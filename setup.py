@@ -7,7 +7,7 @@ requirements = []
 
 setup(
     name="setup_project",
-    version="v0.0.1-alpha.4",
+    version="v0.0.1-alpha.12",
     author="D-Bhatta",
     author_email="dbhatta1232@gmail.com",
     description="A set of scripts to quickly setup a project",
@@ -15,6 +15,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/D-Bhatta/Project-Setup.git",
     packages=find_packages(),
+    include_package_data=True,
     install_requires=requirements,
     classifiers=[
         "Programming Language :: Python :: 3.8",

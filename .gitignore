@@ -29,6 +29,7 @@ MANIFEST
 
 # Environments
 setup_project-env/
+setup_project-env-test/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

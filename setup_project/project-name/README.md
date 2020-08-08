@@ -1,6 +1,6 @@
-# Project-Setup
+# Descriptive Title
 
-A set of scripts to quickly setup a project
+Description of project
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ A set of scripts to quickly setup a project
 
 ## Project Status
 
-Project is currently under development.
+.
 
 ## Additional Information
 

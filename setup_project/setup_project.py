@@ -62,4 +62,5 @@ def del_file(file_name="project_name.zip"):
 
 
 if __name__ == "__main__":
+    # unzip the archive
     zip_pop()

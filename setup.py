@@ -7,7 +7,7 @@ requirements = []
 
 setup(
     name="setup_project",
-    version="v0.0.1-alpha.12",
+    version="v0.0.2",
     author="D-Bhatta",
     author_email="dbhatta1232@gmail.com",
     description="A set of scripts to quickly setup a project",

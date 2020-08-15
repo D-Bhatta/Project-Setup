@@ -10,13 +10,9 @@ Description of project
 
 .
 
-## Notes
-
-1. .
-
 ## Project Status
 
-.
+Project is currently under development.
 
 ## Additional Information
 

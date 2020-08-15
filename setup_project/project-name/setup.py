@@ -6,7 +6,7 @@ with open("README.md", "r") as readme_file:
 requirements = []
 
 setup(
-    name="project-name",
+    name="project_name",
     version="0.0.1",
     author="D-Bhatta",
     author_email="email",

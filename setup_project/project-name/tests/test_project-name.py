@@ -1,4 +1,4 @@
-""" Tests for 'project-name' package """
+""" Tests for 'project_name' package """
 import pytest
 from project_name import project_name
 

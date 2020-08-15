@@ -17,7 +17,7 @@ def helloworld(object):
     print("I am a {}.".format(object))
 
 
-def zip_push(sourcedir="project-name", zip_name="project_name"):
+def zip_push(sourcedir="project_name", zip_name="project_name"):
     """
     Zips up the files in the source directory
 

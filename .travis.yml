@@ -8,8 +8,8 @@ install:
   - pip install -e .
 script:
   - black --line-length=79 --check .
-  - pytest --ignore=setup_project/project-name
-  - pytest --ignore=setup_project/project-name --cov=setup_project
+  - pytest --ignore=setup_project/project_name
+  - pytest --ignore=setup_project/project_name --cov=setup_project
     --cov-fail-under=100
 after_success:
   - coveralls

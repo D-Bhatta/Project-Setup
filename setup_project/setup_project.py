@@ -17,7 +17,7 @@ def helloworld(object):
     print("I am a {}.".format(object))
 
 
-def zip_push(sourcedir="project_name", zip_name="project_name"):
+def zip_push(sourcedir="project_name", file_name="project_name"):
     """
     Zips up the files in the source directory
 
@@ -28,16 +28,20 @@ def zip_push(sourcedir="project_name", zip_name="project_name"):
     Returns:
         name (str): Name of the output zip file.
     """
+    if not file_name:
+        raise ValueError("Empty filename")
+    if not sourcedir:
+        raise ValueError("Directory doesn't exist")
     # Create zip file
     # Get full path of zip file created
     name = ""
     try:
-        name = shutil.make_archive(zip_name, "zip", sourcedir)
+        name = shutil.make_archive(file_name, "zip", sourcedir)
     except FileNotFoundError:
         print("Source directory doesn't exist")
 
     # get the start of the file name
-    start = 0 - (len(zip_name + "zip") + 1)
+    start = 0 - (len(file_name + "zip") + 1)
 
     # extract the filename from the full path
     name = name[start:]

@@ -26,14 +26,23 @@ def test_zip_push():
 
 
 def test_zip_push_exception():
-    with pytest.raises(OSError):
+    with pytest.raises(ValueError) as e:
         setup_project.zip_push("")
+
+    assert "Directory doesn't exist" in str(e.value)
 
 
 def test_zip_push_exception2(capsys):
     setup_project.zip_push(sourcedir="hello")
     captured = capsys.readouterr()
     assert "Source directory doesn't exist" in captured.out
+
+
+def test_zip_push_exception3():
+    with pytest.raises(ValueError) as e:
+        setup_project.zip_push(file_name="")
+
+    assert "Empty filename" in str(e.value)
 
 
 def test_zip_pop():

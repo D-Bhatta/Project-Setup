@@ -7,7 +7,7 @@ import os
 import pytest
 
 import setup_project
-from setup_project.commands import Commands
+from setup_project import Commands
 
 os.chdir("tests/")
 

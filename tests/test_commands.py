@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+import setup_project
 from setup_project.commands import Commands
 
 os.chdir("tests/")
@@ -13,14 +14,14 @@ os.chdir("tests/")
 
 def test_helloworld(capsys):
     """ Correct object argument prints """
-    commands.helloworld("cat")
+    Commands.helloworld("cat")
     captured = capsys.readouterr()
     assert "cat" in captured.out
 
 
 def test_helloworld_exception():
     with pytest.raises(TypeError):
-        setup_project.helloworld(1)
+        Commands.helloworld(1)
 
 
 class TestCommands(object):

@@ -15,6 +15,9 @@ import subprocess
 from os import system
 from subprocess import run
 
+import yaml
+from yaml import Dumper, Loader
+
 
 def helloworld(object):
     """
@@ -103,7 +106,10 @@ class Commands(object):
         Returns:
             command_list (dict): yaml extracted from file
         """
-        pass
+        with open(file_name, "r") as stream:
+            yaml_object = yaml.load(stream, Loader=Loader)
+
+        return yaml_object
 
     def log_output(self, command, output):
         """

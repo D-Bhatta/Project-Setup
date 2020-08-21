@@ -136,10 +136,10 @@ class TestCommands(object):
 
         test_dict = {
             "commands": [
-                'echo "hello"',
-                'echo "Working as intended"',
-                'john "Substitutions are also working"',
-                'henry "Substitutions are also working in multiple locations"',
+                "echo hello",
+                "echo Working as intended",
+                "john Substitutions are also working",
+                "henry Substitutions are also working in multiple locations",
             ],
             "substitutions": [{"sub": "echo"}, {"loc": ["john", "henry"]}],
         }

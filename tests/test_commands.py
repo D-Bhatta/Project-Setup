@@ -81,15 +81,6 @@ class TestCommands(object):
 
         assert not x.commands, "Command list not empty"
 
-    def test_delete_commands_exception(self):
-        x = Commands()
-        x.delete_commands()
-
-        with pytest.raises(Exception) as e:
-            x.delete_commands()
-
-        assert "Command list is already empty" in str(e.value)
-
     def test_execute_cmd(self):
         x = Commands()
 

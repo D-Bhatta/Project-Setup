@@ -66,6 +66,13 @@ class TestCommands(object):
             e.value
         )
 
+        with pytest.raises(AttributeError) as e:
+            x.add_commands([])
+
+        assert "Empty list or string passed to add_commands method" in str(
+            e.value
+        )
+
     def test_delete_commands(self):
         x = Commands()
         test_cmd_string = "C:\\Program Files\\Git\\bin\\git.exe status"

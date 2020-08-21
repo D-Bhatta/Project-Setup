@@ -49,6 +49,12 @@ class Commands(object):
         Returns:
             None
         """
+
+        if not command_list:
+            raise AttributeError(
+                "Empty list or string passed to add_commands method"
+            )
+
         if type(command_list) == str:
             command_list = command_list.split(" ")
         self.commands.append(command_list)

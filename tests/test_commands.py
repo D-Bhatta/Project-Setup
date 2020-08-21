@@ -84,9 +84,28 @@ class TestCommands(object):
     def test_execute_cmd(self):
         x = Commands()
 
-        result = x.execute_cmd(["echo", "Hello"])
+        command1 = ["echo", "Hello"]
 
-        assert result == "Hello\r\n", "Invalid command output"
+        command2 = [
+            "setup_project-env\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "--version",
+        ]
+
+        result = x.execute_cmd(command1)
+
+        assert result == "Hello\r\n", "Invalid command output1"
+
+        os.chdir("../")
+
+        result = x.execute_cmd(command2)
+
+        content = "pip 20.2 from J:\\Education\\Code\\Python\\Project-Setup\\setup_project-env\\lib\\site-packages\\pip (python 3.8)\r\r\n"
+
+        os.chdir("tests/")
+
+        assert content == result, "Invalid command output2"
 
     def test_execute_cmd_exception(self):
         x = Commands()

@@ -11,6 +11,7 @@ Calling it's operate method will
 """
 import os
 import shutil
+import subprocess
 from os import system
 from subprocess import run
 
@@ -81,7 +82,12 @@ class Commands(object):
         Returns:
             stdout (string): Output from running the command
         """
-        pass
+        # run the command
+        result = run(command, stdout=subprocess.PIPE, shell=True)
+        # decode output from bytes to UTF-8 encoded string
+        stdout = result.stdout.decode("utf-8")
+        # return output
+        return stdout
 
     def file_extract(self, file_name):
         """

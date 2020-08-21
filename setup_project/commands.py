@@ -106,6 +106,19 @@ class Commands(object):
         Returns:
             command_list (dict): yaml extracted from file
         """
+        # Check if file name has been passed
+        if not file_name:
+            raise ValueError("Empty filename")
+        # Check if file exists
+        if not os.path.exists(f"./{file_name}"):
+            raise FileNotFoundError(f"{file_name} doesn't exist")
+        # check if file is a zip file
+        if file_name[-4:] != ".yml":
+            if file_name[-5:] != ".yaml":
+                raise ValueError(
+                    f"{file_name}: File extension should be yml or yaml"
+                )
+
         with open(file_name, "r") as stream:
             yaml_object = yaml.load(stream, Loader=Loader)
 

@@ -152,17 +152,17 @@ class TestCommands(object):
         with pytest.raises(FileNotFoundError) as e:
             x.file_extract("Cats.yml")
 
-        assert "File doesn't exist" in str(e.value)
+        assert "Cats.yml doesn't exist" in str(e.value)
 
         with pytest.raises(ValueError) as e:
             x.file_extract("")
 
-        assert "Empty file name" in str(e.value)
+        assert "Empty filename" in str(e.value)
 
         with pytest.raises(ValueError) as e:
-            x.file_extract("cat.mzip")
+            x.file_extract("app.log")
 
-        assert "File extension should be yml" in str(e.value)
+        assert "File extension should be yml or yaml" in str(e.value)
 
     def test_log_output(self):
         x = Commands()

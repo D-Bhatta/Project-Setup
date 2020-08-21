@@ -32,9 +32,9 @@ class TestCommands(object):
 
     def test_add_commands(self):
         x = Commands()
-        test_cmd_string = "C:\\Program Files\\Git\\bin\\git.exe status"
+        test_cmd_string = "git status"
         test_cmd_string_result = [
-            "C:\\Program Files\\Git\\bin\\git.exe",
+            "git",
             "status",
         ]
         test_cmd_list = [
@@ -215,8 +215,6 @@ class TestCommands(object):
         x = Commands()
         yaml_object = yaml.load(
             """
-        ---
-
         commands:
         - echo hello
         - echo Working as intended

@@ -4,7 +4,7 @@ This class is used to execute commands passed to it.
 
 Calling it's operate method will
 
-- Extract json data from a json file
+- Extract yaml data from a yaml file
 - Substitute attributes into each command string
 - Run each command string
 - Log output
@@ -79,21 +79,22 @@ class Commands(object):
 
     def file_extract(self, file_name):
         """
-        Extracts json strings from a file
+        Extracts yaml strings from a file
 
         Args:
             file_name (string): Name of the file
 
         Returns:
-            command_list (json): json extracted from file
+            command_list (dict): yaml extracted from file
         """
         pass
 
-    def log_output(self, output):
+    def log_output(self, command, output):
         """
         Writes output to log: setup.log
 
         Args:
+            command (string): String of command to be logged.
             output (string): String of output to be logged.
 
         Returns:
@@ -119,36 +120,41 @@ class Commands(object):
         Substitutes attributes in commands at locations.
 
         Args:
-            command_data (json): A json object that contains:
-            command (string): string commands
-            attribute (list): list of string attributes
+            command_data (yaml): A yaml object that contains:
+                command (string): string commands
+                attribute (list): list of string attributes
+                location (list): list of string locations
 
         Returns:
             cmd_list (list): A list of string commands
         """
         pass
 
-    def substitute_value(self, command, attribute):
+    def substitute_value(self, command, attribute, location):
         """
         Substitutes attributes in commands at locations.
 
         Args:
-            command_list (string): A string command
-            attribute_list (string): A string attribute
+            command (string): A string command
+            attribute (string): A string attribute
+            location (string): A string location
 
         Returns:
             cmd (string): A string command
         """
         pass
 
-    def operate(self):
+    def operate(self, file_name):
         """
         Operates the setup
 
         Args:
-            None
+            file_name (string): Name of the file
 
         Returns:
-            None
+            bool :
+                True if it works
+                False if it doesn't
         """
+
         pass

@@ -82,6 +82,10 @@ class Commands(object):
         Returns:
             stdout (string): Output from running the command
         """
+        if not command:
+            raise AttributeError("Empty command list")
+        if type(command) != list:
+            raise TypeError("Command should be a list")
         # run the command
         result = run(command, stdout=subprocess.PIPE, shell=True)
         # decode output from bytes to UTF-8 encoded string

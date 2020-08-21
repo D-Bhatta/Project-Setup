@@ -69,7 +69,7 @@ class Commands(object):
         Returns:
             None
         """
-        pass
+        self.commands.clear()
 
     def execute_cmd(self, command):
         """

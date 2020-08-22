@@ -166,35 +166,18 @@ class TestCommands(object):
 
     def test_log_output(self):
         x = Commands()
-        output = """
-        - sub
-        - loc
-        - Cats
-        - Small
-        """
-        commands = """
-        - Hello
-        - Cats
-        - Are So
-        - Small
-        """
+        output = """- sub\n- loc\n- Cats\n- Small"""
+        commands = """- Hello\n- Cats\n- Are So\n- Small"""
         x.log_output(commands, output)
 
-        test_content = """
-        command:
-        - Hello
-        - Cats
-        - Are So
-        - Small
-        output:
-        - sub
-        - loc
-        - Cats
-        - Small
-        """
+        test_content = "Command:\n- Hello\n- Cats\n- Are So\n- Small\nOutput:\n- sub\n- loc\n- Cats\n- Small\n"
 
-        with open("app.log") as f:
+        os.chdir("../")
+
+        with open("setup.log") as f:
             content = f.read()
+
+        os.chdir("tests/")
 
         assert content == test_content, "File data mismatch"
 
@@ -223,7 +206,7 @@ class TestCommands(object):
         "Working as intended"
         """
 
-        with open("app.log") as f:
+        with open("setup.log") as f:
             content = f.read()
 
         assert content == test_content, "Run commands output mismatch"
@@ -346,7 +329,7 @@ class TestCommands(object):
 
         """
 
-        with open("app.log") as f:
+        with open("setup.log") as f:
             content = f.read()
 
         assert content == test_content, "Operate output mismatch"

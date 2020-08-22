@@ -9,14 +9,24 @@ Calling it's operate method will
 - Run each command string
 - Log output
 """
+import logging
+import logging.config
 import os
 import shutil
 import subprocess
+from json import load as jload
 from os import system
 from subprocess import run
 
 import yaml
 from yaml import Dumper, Loader
+
+# Configure logger lg with config for appLogger from config.json["logging"]
+with open("setup_project/config.json", "r") as f:
+    config = jload(f)
+    logging.config.dictConfig(config["logging"])
+lg = logging.getLogger("appLogger")
+# lg.debug("This is a debug message")
 
 
 def helloworld(object):
@@ -126,7 +136,7 @@ class Commands(object):
 
     def log_output(self, command, output):
         """
-        Writes output to log: setup.log
+        Writes output to log
 
         Args:
             command (string): String of command to be logged.
@@ -135,7 +145,14 @@ class Commands(object):
         Returns:
             None
         """
-        pass
+        if not command:
+            raise ValueError("Empty command or output")
+        if not output:
+            raise ValueError("Empty command or output")
+        lg.info("Command:")
+        lg.info(command)
+        lg.info("Output:")
+        lg.info(output)
 
     def run_commands(self):
         """

@@ -145,14 +145,7 @@ class TestCommands(object):
         result = x.file_extract("test_cmd.yml")
 
         test_dict = {
-            "commands": [
-                "echo hello",
-                "echo Working as intended",
-                "john Substitutions are also working",
-                "henry Substitutions are also working in multiple locations",
-                "git dog",
-                "git cat",
-            ],
+            "commands": "echo hello\necho Working as intended\njohn Substitutions are also working\nhenry Substitutions are also working in multiple locations\ngit dog\ngit cat\n",
             "substitutions": [
                 {"sub": "echo", "loc": ["john", "henry"]},
                 {"sub": "status", "loc": ["cat", "dog"]},

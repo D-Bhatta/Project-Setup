@@ -1,12 +1,12 @@
 ---
 
-commands:
-  - echo hello
-  - echo Working as intended
-  - john Substitutions are also working
-  - henry Substitutions are also working in multiple locations
-  - git dog
-  - git cat
+commands: |
+    echo hello
+    echo Working as intended
+    john Substitutions are also working
+    henry Substitutions are also working in multiple locations
+    git dog
+    git cat
 substitutions:
   - sub: echo
     loc:

@@ -203,11 +203,14 @@ class TestCommands(object):
         test_content = """
         hello
 
-        "Working as intended"
+        Working as intended
         """
+        os.chdir("../")
 
         with open("setup.log") as f:
             content = f.read()
+
+        os.chdir("tests/")
 
         assert content == test_content, "Run commands output mismatch"
 

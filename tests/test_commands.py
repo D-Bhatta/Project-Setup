@@ -295,3 +295,7 @@ class TestCommands(object):
     def test_operate(self):
         x = Commands()
         assert x.operate("test_cmd.yml") == True
+
+    def test_python_setup(self):
+        x = Commands()
+        assert x.operate("cmds.yml") == True

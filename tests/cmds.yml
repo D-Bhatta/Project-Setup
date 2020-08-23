@@ -1,0 +1,14 @@
+---
+
+commands: |
+    echo Hello
+    git status
+substitutions:
+  - sub: echo
+    loc:
+      - john
+      - henry
+  - sub: status
+    loc:
+      - cat
+      - dog

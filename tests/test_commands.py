@@ -150,8 +150,13 @@ class TestCommands(object):
                 "echo Working as intended",
                 "john Substitutions are also working",
                 "henry Substitutions are also working in multiple locations",
+                "git dog",
+                "git cat",
             ],
-            "substitutions": [{"sub": "echo"}, {"loc": ["john", "henry"]}],
+            "substitutions": [
+                {"sub": "echo", "loc": ["john", "henry"]},
+                {"sub": "status", "loc": ["cat", "dog"]},
+            ],
         }
 
         assert result == test_dict, "File load mismatch"

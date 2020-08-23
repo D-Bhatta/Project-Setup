@@ -173,7 +173,13 @@ class Commands(object):
         Returns:
             None
         """
-        pass
+        # run all the commands
+        for command in self.commands:
+            output = self.execute_cmd(command)
+            self.log_output(command, output)
+
+        # Clear the list of commands
+        self.delete_commands()
 
     def substitute_values(self, command_data):
         """

@@ -207,14 +207,10 @@ class TestCommands(object):
     def test_run_commands(self):
         x = Commands()
 
-        x.add_commands(["echo hello", "echo Working as intended"])
+        x.add_commands(["echo hello", "echo Working as intended"], losc=True)
         x.run_commands()
 
-        test_content = """
-        hello
-
-        Working as intended
-        """
+        test_content = "Command:\n- Hello\n- Cats\n- Are So\n- Small\nOutput:\n- sub\n- loc\n- Cats\n- Small\nCommand:\n['echo', 'hello']\nOutput:\nhello\n\n\nCommand:\n['echo', 'Working', 'as', 'intended']\nOutput:\nWorking as intended\n\n\n"
         os.chdir("../")
 
         with open("setup.log") as f:

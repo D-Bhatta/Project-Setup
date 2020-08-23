@@ -234,5 +234,13 @@ class Commands(object):
                 True if it works
                 False if it doesn't
         """
-
-        pass
+        try:
+            self.delete_commands()
+            command_data = self.file_extract(file_name)
+            commands = self.substitute_values(command_data=command_data)
+            self.add_commands(commands, losc=True)
+            self.run_commands()
+            return True
+        except Exception as e:
+            print(e)
+            return False

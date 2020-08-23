@@ -294,20 +294,4 @@ class TestCommands(object):
 
     def test_operate(self):
         x = Commands()
-        x.operate("test_cmd.yml")
-        test_content = """
-        hello
-
-        Working as intended
-
-        Substitutions are also working
-
-        Substitutions are also working in multiple locations
-
-
-        """
-
-        with open("setup.log") as f:
-            content = f.read()
-
-        assert content == test_content, "Operate output mismatch"
+        assert x.operate("test_cmd.yml") == True

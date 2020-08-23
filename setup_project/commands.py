@@ -51,7 +51,7 @@ class Commands(object):
     def __init__(self):
         self.commands = []
 
-    def add_commands(self, command_list):
+    def add_commands(self, command_list, losc=False):
         """
         Add a list of commands to self.commands.
 
@@ -59,6 +59,8 @@ class Commands(object):
             command_list:
             (str): A string of commands seperated by spaces
             (list): A list of string commands
+            losc (bool): Whether we are passing a list of string commands that
+                        need to be split individually
 
         Returns:
             None
@@ -70,8 +72,14 @@ class Commands(object):
             )
 
         if type(command_list) == str:
-            command_list = command_list.split(" ")
-        self.commands.append(command_list)
+            command = command_list.split(" ")
+            self.commands.append(command)
+        elif losc == True:
+            for base_string in command_list:
+                command = base_string.split(" ")
+                self.commands.append(command)
+        else:
+            self.commands.append(command_list)
 
     def delete_commands(self):
         """

@@ -55,6 +55,16 @@ class TestCommands(object):
             "list",
         ] in x.commands, "List not in list"
 
+        x.add_commands(["echo hello", "echo Working as intended"], losc=True)
+        assert ["echo", "hello"] in x.commands, "List not in list"
+
+        assert [
+            "echo",
+            "Working",
+            "as",
+            "intended",
+        ] in x.commands, "List not in list"
+
     def test_add_commands_exception(self):
         x = Commands()
         test_cmd_string = ""

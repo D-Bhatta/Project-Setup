@@ -183,34 +183,44 @@ class Commands(object):
         # Clear the list of commands
         self.delete_commands()
 
-    def substitute_value(self, command, attribute, location):
-        """
-        Substitutes attributes in commands at locations.
-
-        Args:
-            command (string): A string command
-            attribute (string): A string attribute
-            location (string): A string location
-
-        Returns:
-            cmd (string): A string command
-        """
-        pass
-
     def substitute_values(self, command_data):
         """
         Substitutes attributes in commands at locations.
 
         Args:
             command_data (yaml): A yaml object that contains:
-                command (string): string commands
-                attribute (list): list of string attributes
-                location (list): list of string locations
+                commands (string): string commands sub and loc
+                substitutions (dict): dictionary that contains
+                sub (list): list of string attributes
+                loc (list): list of string locations
 
         Returns:
             cmd_list (list): A list of string commands
         """
-        pass
+        if not command_data:
+            raise (
+                TypeError(
+                    "Pass only yaml objects to substitute.Or Empty yaml object passed."
+                )
+            )
+        elif type(command_data) != dict:
+            raise (TypeError("Pass only yaml objects to substitute"))
+
+        if not command_data["commands"]:
+            raise (ValueError("Empty command list"))
+
+        substitutions = command_data["substitutions"]
+        cmd_list = []
+        commands = command_data["commands"]
+        content = commands
+        for substitution in substitutions:
+            sub_word = substitution["sub"]
+            loc_len = len(substitution["loc"])
+            for i in range(loc_len):
+                content = content.replace(substitution["loc"][i], sub_word)
+
+        cmd_list = content.split("\n")[:-1]
+        return cmd_list
 
     def operate(self, file_name):
         """

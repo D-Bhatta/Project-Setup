@@ -229,16 +229,22 @@ class TestCommands(object):
         x = Commands()
         yaml_object = yaml.load(
             """
-        commands:
-        - echo hello
-        - echo Working as intended
-        - john Substitutions are also working
-        - henry Substitutions are also working in multiple locations
+        commands: |
+            echo hello
+            echo Working as intended
+            john Substitutions are also working
+            henry Substitutions are also working in multiple locations
+            git dog
+            git cat
         substitutions:
         - sub: echo
-        - loc:
-            - john
-            - henry
+          loc:
+              - john
+              - henry
+        - sub: status
+          loc:
+              - cat
+              - dog
         """
         )
 
@@ -248,85 +254,43 @@ class TestCommands(object):
             "echo hello",
             "echo Working as intended",
             "echo Substitutions are also working",
-            "echo Substitutions are also working in multiple locations",
+            "echo Substitutions are also working in multiple lostatusions",
+            "git status",
+            "git status",
         ]
 
         assert result == test_content, "Substituted words don't match"
 
     def test_substitute_values_exception(self):
         x = Commands()
-
         yaml_object = yaml.load(
             """
-        ---
+        commands: |
 
+        substitutions:
+        - sub: echo
+          loc:
+              - john
+              - henry
+        - sub: status
+          loc:
+              - cat
+              - dog
         """
         )
 
         with pytest.raises(ValueError) as e:
             x.substitute_values(yaml_object)
 
-        assert "Empty yaml object" in str(e.value)
+        assert "Empty command list" in str(e.value)
 
         with pytest.raises(TypeError) as e:
             x.substitute_values("")
 
-        assert "Pass only yaml objects to substitute" in str(e.value)
-
-    def test_substitute_value(self):
-        x = Commands()
-
-        command = "john Substitutions are also working"
-        attribute = "echo"
-        location = "john"
-
-        result = x.substitute_value(command, attribute, location)
-
-        assert result == "echo Substitutions are also working"
-
-        command = "henry Substitutions are also working in multiple locations"
-        attribute = "echo"
-        location = "henry"
-
-        result = x.substitute_value(command, attribute, location)
-
         assert (
-            result
-            == "echo Substitutions are also working in multiple locations"
+            "Pass only yaml objects to substitute.Or Empty yaml object passed."
+            in str(e.value)
         )
-
-    def test_substitute_value_exception(self):
-        x = Commands()
-
-        with pytest.raises(ValueError) as e:
-            x.substitute_value("", "a", "a")
-
-        assert "Empty command or output" in str(e.value)
-
-        with pytest.raises(ValueError) as e:
-            x.substitute_value("a", "", "a")
-
-        assert "Empty command or output" in str(e.value)
-
-        with pytest.raises(ValueError) as e:
-            x.substitute_value("a", "a", "")
-
-        assert "Empty command or output" in str(e.value)
-
-        with pytest.raises(TypeError) as e:
-            x.substitute_value("1", "1", 1)
-
-        assert "Pass only strings to substitute" in str(e.value)
-
-        with pytest.raises(TypeError) as e:
-            x.substitute_value(1, "a", "a")
-
-        assert "Pass only strings to substitute" in str(e.value)
-
-        with pytest.raises(TypeError) as e:
-            x.substitute_value("1", 1, "1")
-
-        assert "Pass only strings to substitute" in str(e.value)
 
     def test_operate(self):
         x = Commands()

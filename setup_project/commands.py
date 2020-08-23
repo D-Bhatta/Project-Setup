@@ -173,6 +173,8 @@ class Commands(object):
         Returns:
             None
         """
+        if not self.commands:
+            raise ValueError("Empty Command List")
         # run all the commands
         for command in self.commands:
             output = self.execute_cmd(command)

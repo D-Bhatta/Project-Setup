@@ -220,6 +220,13 @@ class TestCommands(object):
 
         assert content == test_content, "Run commands output mismatch"
 
+    def test_run_commands_exception(self):
+        x = Commands()
+        with pytest.raises(ValueError) as e:
+            x.run_commands()
+
+        assert "Empty Command List" in str(e.value)
+
     def test_substitute_values(self):
         x = Commands()
         yaml_object = yaml.load(

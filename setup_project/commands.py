@@ -181,6 +181,20 @@ class Commands(object):
         # Clear the list of commands
         self.delete_commands()
 
+    def substitute_value(self, command, attribute, location):
+        """
+        Substitutes attributes in commands at locations.
+
+        Args:
+            command (string): A string command
+            attribute (string): A string attribute
+            location (string): A string location
+
+        Returns:
+            cmd (string): A string command
+        """
+        pass
+
     def substitute_values(self, command_data):
         """
         Substitutes attributes in commands at locations.
@@ -193,20 +207,6 @@ class Commands(object):
 
         Returns:
             cmd_list (list): A list of string commands
-        """
-        pass
-
-    def substitute_value(self, command, attribute, location):
-        """
-        Substitutes attributes in commands at locations.
-
-        Args:
-            command (string): A string command
-            attribute (string): A string attribute
-            location (string): A string location
-
-        Returns:
-            cmd (string): A string command
         """
         pass
 

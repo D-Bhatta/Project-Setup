@@ -156,7 +156,7 @@ class Commands(object):
         if not command:
             raise ValueError("Empty command or output")
         if not output:
-            raise ValueError("Empty command or output")
+            output = "Empty output"
         lg.info("Command:")
         lg.info(command)
         lg.info("Output:")
@@ -242,5 +242,5 @@ class Commands(object):
             self.run_commands()
             return True
         except Exception as e:
-            print(e)
+            lg.error(e)
             return False

@@ -1,0 +1,12 @@
+---
+
+commands:
+  - Hello
+  - Cats
+  - Are So
+  - Small
+substitutions:
+  - sub: Dogs
+  - loc:
+      - Cats
+      - Small

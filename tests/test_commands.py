@@ -94,6 +94,8 @@ class TestCommands(object):
         assert not x.commands, "Command list not empty"
 
     def test_execute_cmd(self):
+        if not sys.platform.startswith("win"):
+            pytest.skip("skipping windows-only tests")
         x = Commands()
 
         command1 = ["echo", "Hello"]
@@ -202,6 +204,8 @@ class TestCommands(object):
         assert "Empty command " in str(e.value)
 
     def test_run_commands(self):
+        if not sys.platform.startswith("win"):
+            pytest.skip("skipping windows-only tests")
         x = Commands()
 
         x.add_commands(["echo hello", "echo Working as intended"], losc=True)

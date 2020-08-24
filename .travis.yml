@@ -10,7 +10,7 @@ script:
   - black --line-length=79 --check .
   - pytest --ignore=setup_project/project_name
   - pytest --ignore=setup_project/project_name --cov=setup_project
-    --cov-fail-under=100
+    --cov-fail-under=100 --cov-report term-missing
 after_success:
   - coveralls
 env:

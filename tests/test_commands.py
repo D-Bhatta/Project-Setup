@@ -3,6 +3,7 @@ Tests for setup_project.Commands
 """
 
 import os
+from shutil import copyfile, rmtree
 
 import pytest
 import yaml
@@ -195,12 +196,7 @@ class TestCommands(object):
         with pytest.raises(ValueError) as e:
             x.log_output("", "a")
 
-        assert "Empty command or output" in str(e.value)
-
-        with pytest.raises(ValueError) as e:
-            x.log_output("a", "")
-
-        assert "Empty command or output" in str(e.value)
+        assert "Empty command " in str(e.value)
 
     def test_run_commands(self):
         x = Commands()
@@ -296,6 +292,11 @@ class TestCommands(object):
         x = Commands()
         assert x.operate("test_cmd.yml") == True
 
-    def test_python_setup(self):
-        x = Commands()
-        assert x.operate("cmds.yml") == True
+    # def test_python_setup(self):
+    #     Should be used to check if everything is working right
+    #     x = Commands()
+    #     x.execute_cmd(['git', 'clone', 'https://github.com/D-Bhatta/test_project_setup.git'])
+    #     copyfile("cmds.yml", "test_project_setup/cmds.yml")
+    #     os.chdir("test_project_setup/")
+    #     assert x.operate("cmds.yml") == True
+    #     os.chdir("../")

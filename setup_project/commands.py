@@ -155,7 +155,7 @@ class Commands(object):
         """
         if not command:
             raise ValueError("Empty command or output")
-        if not output:
+        if not output:  # pragma: no cover
             output = "Empty output"
         lg.info("Command:")
         lg.info(command)
@@ -222,7 +222,7 @@ class Commands(object):
         cmd_list = content.split("\n")[:-1]
         return cmd_list
 
-    def operate(self, file_name):
+    def operate(self, file_name):  # pragma: no cover
         """
         Operates the setup
 

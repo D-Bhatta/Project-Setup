@@ -3,6 +3,7 @@ Tests for setup_project.Commands
 """
 
 import os
+import sys
 from shutil import copyfile, rmtree
 
 import pytest
@@ -119,6 +120,8 @@ class TestCommands(object):
         assert content == result, "Invalid command output2"
 
     def test_execute_cmd_exception(self):
+        if not sys.platform.startswith("win"):
+            pytest.skip("skipping windows-only tests")
         x = Commands()
 
         with pytest.raises(AttributeError) as e:
@@ -169,7 +172,7 @@ class TestCommands(object):
         assert "Empty filename" in str(e.value)
 
         with pytest.raises(ValueError) as e:
-            x.file_extract("app.log")
+            x.file_extract("app.logx")
 
         assert "File extension should be yml or yaml" in str(e.value)
 
@@ -215,6 +218,8 @@ class TestCommands(object):
         assert content == test_content, "Run commands output mismatch"
 
     def test_run_commands_exception(self):
+        if not sys.platform.startswith("win"):
+            pytest.skip("skipping windows-only tests")
         x = Commands()
         with pytest.raises(ValueError) as e:
             x.run_commands()
@@ -287,6 +292,10 @@ class TestCommands(object):
             "Pass only yaml objects to substitute.Or Empty yaml object passed."
             in str(e.value)
         )
+        with pytest.raises(TypeError) as e:
+            x.substitute_values(2)
+
+        assert "Pass only yaml objects to substitute" in str(e.value)
 
     def test_operate(self):
         x = Commands()
